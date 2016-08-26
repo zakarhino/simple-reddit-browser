@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
 import ArticleDisplay from './components/ArticleDisplay/ArticleDisplay.jsx';
 import Menu from './components/Menu/Menu.jsx';
 
@@ -20,11 +19,13 @@ class App extends Component {
     }
 
     this.updateKeyword = this.updateKeyword.bind(this);
+    this.searchForSubreddit();
   }
 
   updateKeyword(keyword) {
     this.setState({
       search: {
+        ...this.state.search,
         keyword: keyword
       }
     });
@@ -33,13 +34,19 @@ class App extends Component {
     }
   }
 
-  searchForSubreddit(board) {
+  searchForSubreddit(board = '') {
     fetch(`/api/board/${board}`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        console.log('data', data);
+        this.setState({
+          displayed: {
+            ...this.state.displayed,
+            articles: data
+          }
+        });
+        console.log(this.state);
       });
   }
 

@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'whatwg-fetch',
-    path.resolve(__dirname, 'client/app/app.jsx')
+    path.resolve(__dirname, 'client/app/App.jsx')
   ],
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -19,7 +19,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['stage-0', 'es2015'],
-          plugins: ['transform-react-jsx']
+          plugins: ['transform-object-rest-spread', 'transform-react-jsx']
         }
       },
       {
