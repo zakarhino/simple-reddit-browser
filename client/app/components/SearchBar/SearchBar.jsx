@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import styles from './Menu.css';
+import styles from './SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,14 +9,30 @@ class SearchBar extends Component {
     this.state = {
       searchterm: ''
     }
+
+    this.search = this.search.bind(this);
+  }
+
+  search({ keyCode, target: { value }}) {
+    console.log('called', value);
+    this.setState({
+      searchterm: value
+    });
+    console.log('event codeeee', keyCode);
+    if(keyCode == 13) {
+      this.props.updateKeyword(this.state.searchterm);
+    }
   }
 
   render() {
     return (
-      <input>
-      </input>
+      <div className="input-field">
+        <input id="search" type="search" required onKeyUp={this.search} />
+        <label htmlFor="search"><i className="material-icons">search</i></label>
+        <i className="material-icons">close</i>
+      </div>
     )
   }
 }
 
-module.exports = Menu;
+module.exports = SearchBar;

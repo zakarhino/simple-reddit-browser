@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'react-materialize';
+import { CollectionItem, Badge } from 'react-materialize';
 
 import styles from './Article.css';
 
@@ -13,10 +13,14 @@ class Article extends Component {
   render() {
     const article = this.props.article;
     return (
-      <li>
-        <img src={article.thumbnail}></img>
-        <a href={`https://www.reddit.com${article.permalink}`}>{article.title}</a>
-      </li>
+      <CollectionItem className="avatar" href={`https://www.reddit.com${article.permalink}`} >
+        { article.thumbnail ? <img src={article.thumbnail} alt="" className="circle"/> : null }
+        <Badge newIcon data-badge-caption="upvotes">{article.ups}</Badge>
+        <span className={"title " + styles.title}>{article.title}</span>
+        <p>Author: {article.author} <br />
+         Comments: {article.num_comments}
+        </p>
+      </CollectionItem>
     );
   }
 }

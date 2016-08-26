@@ -8,14 +8,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      search: {
-        keyword: ''
-      },
-      displayed: {
-        subreddit: '',
-        displayName: '',
-        articles: []
-      }
+      keyword: '',
+      articles: [],
+      subreddit: 'Front Page'
     }
 
     this.updateKeyword = this.updateKeyword.bind(this);
@@ -24,13 +19,11 @@ class App extends Component {
 
   updateKeyword(keyword) {
     this.setState({
-      search: {
-        ...this.state.search,
-        keyword: keyword
-      }
+      keyword: keyword || 'Front Page',
+      articles: []
     });
     if(typeof keyword === "string") {
-      searchForSubreddit(keyword);
+      this.searchForSubreddit(keyword);
     }
   }
 
@@ -41,12 +34,9 @@ class App extends Component {
       })
       .then((data) => {
         this.setState({
-          displayed: {
-            ...this.state.displayed,
-            articles: data
-          }
+          articles: data,
+          subreddit: this.state.keyword || 'Front Page'
         });
-        console.log(this.state);
       });
   }
 
@@ -55,9 +45,8 @@ class App extends Component {
       <div>
         <Menu updateKeyword={this.updateKeyword} />
         <ArticleDisplay 
-          subreddit={this.state.displayed.subreddit} 
-          articles={this.state.displayed.articles}
-          displayName={this.state.displayed.displayName} />
+          articles={this.state.articles}
+          subreddit={this.state.subreddit} />
       </div>
     )
   }

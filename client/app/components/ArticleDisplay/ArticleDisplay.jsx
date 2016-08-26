@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ProgressBar } from 'react-materialize';
+import { Collection, ProgressBar } from 'react-materialize';
 import Article from './Article/Article.jsx';
 
 import styles from './ArticleDisplay.css';
@@ -18,15 +18,16 @@ class ArticleDisplay extends Component {
   }
 
   render() {
-    console.log('rendered article display');
     if(!this.props.articles.length) {
       return (
         <ProgressBar />
       );
     } else {
       return (
-        <div>
-          {this.renderArticles()}
+        <div className={styles.articleList}>
+          <Collection header={this.props.subreddit}>
+            {this.renderArticles()}
+          </Collection>
         </div>
       );
     }
