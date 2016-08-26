@@ -19,8 +19,4 @@ class Menu extends Component {
   }
 }
 
-// <label htmlFor="search"><i className="material-icons">search</i></label>
-// <i className="material-icons">close</i>
-
-
 module.exports = Menu;

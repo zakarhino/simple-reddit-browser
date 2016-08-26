@@ -4,7 +4,7 @@
   "description": "A simple reddit browser",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "npm run build; npm run server",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "server": "nodemon server/server.js"

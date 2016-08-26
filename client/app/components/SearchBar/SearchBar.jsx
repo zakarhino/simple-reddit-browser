@@ -14,11 +14,9 @@ class SearchBar extends Component {
   }
 
   search({ keyCode, target: { value }}) {
-    console.log('called', value);
     this.setState({
       searchterm: value
     });
-    console.log('event codeeee', keyCode);
     if(keyCode == 13) {
       this.props.updateKeyword(this.state.searchterm);
     }
