@@ -1,17 +1,16 @@
 {
   "name": "reddit-thing",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple reddit browser",
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "server": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server/server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Zak Golding <zak@0x7cf.com>",
+  "license": "MIT",
   "dependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.14.0",
@@ -21,8 +20,12 @@
     "body-parser": "^1.15.2",
     "css-loader": "^0.24.0",
     "express": "^4.14.0",
+    "html-webpack-plugin": "^2.22.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "request": "^2.74.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "whatwg-fetch": "^1.0.0"
   }
 }

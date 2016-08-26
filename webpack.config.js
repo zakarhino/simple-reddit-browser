@@ -1,9 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: "source-map",
-  entry: path.resolve(__dirname, 'client/app/app.js'),
+  devtool: 'source-map',
+  entry: [
+    'whatwg-fetch',
+    path.resolve(__dirname, 'client/app/app.jsx')
+  ],
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
@@ -14,14 +18,15 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         query: {
-          presets: ['stage-0', 'es2015']
+          presets: ['stage-0', 'es2015'],
+          plugins: ['transform-react-jsx']
         }
       },
       {
         test: /\.css$/,
         loaders: [
           'style-loader', 
-          'css-loader'
+          'css-loader?modules'
         ]
       },
       {
@@ -32,5 +37,12 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      filename: 'index.html'
+    })
+  ]
 };
